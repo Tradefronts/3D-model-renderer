@@ -7,16 +7,16 @@ Source: https://sketchfab.com/3d-models/earth-f7a76c63ff1846afb2d606e5c8369c15
 Title: Earth
 */
 
-import React from 'react'
-import { useGLTF } from '@react-three/drei'
+// import React from 'react'
+// import { useGLTF } from '@react-three/drei'
 
-export default function Model(props) {
-  const { nodes, materials } = useGLTF('/model/earth/earth.gltf')
-  return (
-    <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_4.geometry} material={materials['Scene_-_Root']} scale={1.128} />
-    </group>
-  )
-}
+// export default function Model(props) {
+//   const { nodes, materials } = useGLTF('/model/earth/earth.gltf')
+//   return (
+//     <group {...props} dispose={null}>
+//       <mesh geometry={nodes.Object_4.geometry} material={materials['Scene_-_Root']} scale={1.128} />
+//     </group>
+//   )
+// }
 
-useGLTF.preload('/model/earth/earth.gltf')
+// useGLTF.preload('/model/earth/earth.gltf')
