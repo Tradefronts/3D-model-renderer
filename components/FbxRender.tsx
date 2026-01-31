@@ -29,8 +29,8 @@ function FBXModel() {
       if ((child as THREE.Mesh).isMesh) {
         const mesh = child as THREE.Mesh;
 
-        console.log(child.material, "child material");
-              console.log(child.material.map,"child map");
+        // console.log(child.material, "child material");
+              // console.log(child.material.map,"child map");
 
         const materials = Array.isArray(mesh.material)
           ? mesh.material
