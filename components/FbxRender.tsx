@@ -7,26 +7,37 @@ import * as THREE from "three";
 import { useEffect } from "react";
 
 function FBXModel() {
-  // Textures are working properly for the building and warehouse
+  // Textures are working properly for the building,warehouse,korean_shop and edificio.
 
-  // const model = useLoader(FBXLoader, "/models/buildings/Buildings.fbx");
-  const model = useLoader(FBXLoader, "/models/warehouse/Warehouse.fbx");
+  const model = useLoader(FBXLoader, "/models/buildings/Buildings.fbx");
+  // const model = useLoader(FBXLoader, "/models/warehouse/Warehouse.fbx");
+  // const model = useLoader(FBXLoader, "/models/edificio/Edificio_1.fbx");
+  // const model = useLoader(FBXLoader, "/models/korean_shop/Shop_1.fbx");
 
+  // const model = useLoader(FBXLoader, "/models/old_school/istasyon.fbx", (loader) => {
+  //   loader.setResourcePath("/models/old_school/textures/");
+  // });
+
+  // const model = useLoader(FBXLoader, "/models/school_corridor/corridor.fbx", (loader) => {
+  //   loader.setResourcePath("/models/school_corridor/textures/");
+  // });
+
+  //  const model = useLoader(FBXLoader, "/models/bg/sahteman.fbx");
 
   useEffect(() => {
     model.traverse((child: THREE.Object3D) => {
       if ((child as THREE.Mesh).isMesh) {
         const mesh = child as THREE.Mesh;
 
-        // console.log(child.material, "child material");
-        //       console.log(child.material.map,"child map");
+        console.log(child.material, "child material");
+              console.log(child.material.map,"child map");
 
         const materials = Array.isArray(mesh.material)
           ? mesh.material
           : [mesh.material];
 
         materials.forEach((material: THREE.Material | null) => {
-          //         console.log(material,"material")
+                  console.log(material,"material")
 
           if (!material) return;
 
@@ -35,6 +46,9 @@ function FBXModel() {
             material instanceof THREE.MeshStandardMaterial ||
             material instanceof THREE.MeshPhongMaterial
           ) {
+            if (material.map) {
+              material.map.colorSpace = THREE.SRGBColorSpace;
+            }
             if (!material.map) {
               material.emissiveIntensity = 0.2;
             }
@@ -46,7 +60,7 @@ function FBXModel() {
     });
   }, [model]);
 
-  return <primitive object={model} scale={0.01} dispose={null} />;
+  return <primitive object={model} scale={0.1} dispose={null} />;
 }
 
 export default function FBXViewer() {
